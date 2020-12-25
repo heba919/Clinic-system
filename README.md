@@ -1,0 +1,2 @@
+# Clinic-system
+Remote diagnosis
