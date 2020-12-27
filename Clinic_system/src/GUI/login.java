@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
@@ -27,6 +29,7 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         Lab_u_id_login = new javax.swing.JLabel();
         jlabel2 = new javax.swing.JLabel();
         Tf_u_id_login = new javax.swing.JTextField();
@@ -34,6 +37,8 @@ public class login extends javax.swing.JFrame {
         Butt_login = new javax.swing.JButton();
         Butt_about_doctor_login = new javax.swing.JButton();
         Comb_personselect = new javax.swing.JComboBox<>();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +73,11 @@ public class login extends javax.swing.JFrame {
         });
 
         Comb_personselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doctor", "patient(new reveal)", "patient(consultation)" }));
+        Comb_personselect.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Comb_personselectItemStateChanged(evt);
+            }
+        });
         Comb_personselect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Comb_personselectActionPerformed(evt);
@@ -85,10 +95,13 @@ public class login extends javax.swing.JFrame {
                     .addComponent(jlabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Tf_pass_login, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Tf_u_id_login, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(Comb_personselect, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Tf_pass_login, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 177, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Tf_u_id_login, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Comb_personselect, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -105,15 +118,13 @@ public class login extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Tf_u_id_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Lab_u_id_login)))
+                            .addComponent(Lab_u_id_login)
+                            .addComponent(Comb_personselect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jlabel2)
-                            .addComponent(Tf_pass_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(Comb_personselect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Tf_pass_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(3, 91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Butt_login)
@@ -137,12 +148,35 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_Butt_about_doctor_loginActionPerformed
 
     private void Butt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_loginActionPerformed
-        // TODO add your handling code here:
+      
+      
     }//GEN-LAST:event_Butt_loginActionPerformed
 
     private void Comb_personselectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comb_personselectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Comb_personselectActionPerformed
+
+    private void Comb_personselectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Comb_personselectItemStateChanged
+  
+      int index = (int) Comb_personselect.getSelectedIndex();
+
+
+      if (index == 0)
+      {
+        ///
+      }
+      else if (index==1)            
+      {
+        Tf_u_id_login.setVisible(false); ;
+        Tf_pass_login.setVisible(false);
+      
+      }else if (index==2)
+      {
+        Lab_u_id_login.setText("ID");
+        Tf_u_id_login.setVisible(true); ;
+        Tf_pass_login.setVisible(false);
+      }        // TODO add your handling code here:
+    }//GEN-LAST:event_Comb_personselectItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -186,6 +220,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel Lab_u_id_login;
     private javax.swing.JTextField Tf_pass_login;
     private javax.swing.JTextField Tf_u_id_login;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlabel2;
     // End of variables declaration//GEN-END:variables
 }

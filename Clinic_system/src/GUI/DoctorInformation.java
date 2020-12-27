@@ -51,7 +51,12 @@ public class DoctorInformation extends javax.swing.JFrame {
         jTextField4.setText("jTextField4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 102, 102));
+
+        Tf_name_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tf_name_doctorActionPerformed(evt);
+            }
+        });
 
         Tf_phone_doctor.setCaretColor(new java.awt.Color(153, 255, 255));
         Tf_phone_doctor.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +65,7 @@ public class DoctorInformation extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("name");
 
         jLabel2.setText("phone");
@@ -75,10 +81,26 @@ public class DoctorInformation extends javax.swing.JFrame {
         jLabel7.setText("age");
 
         Tf_add_doctor.setCaretColor(new java.awt.Color(153, 255, 255));
+        Tf_add_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tf_add_doctorActionPerformed(evt);
+            }
+        });
 
         Tf.setCaretColor(new java.awt.Color(153, 255, 255));
 
+        Tf_speci_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tf_speci_doctorActionPerformed(evt);
+            }
+        });
+
         Tf_age_doctor.setCaretColor(new java.awt.Color(153, 255, 255));
+        Tf_age_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tf_age_doctorActionPerformed(evt);
+            }
+        });
 
         Butt_exit_doctor.setText("exit");
 
@@ -98,22 +120,22 @@ public class DoctorInformation extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Tf, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Tf_add_doctor)
-                            .addComponent(Tf_study_doctor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Tf_speci_doctor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Tf_age_doctor)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
+                            .addComponent(Tf_speci_doctor, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                            .addComponent(Tf_study_doctor, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Tf, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Tf_add_doctor, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Tf_age_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Tf_phone_doctor)
                             .addComponent(Tf_name_doctor))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(Butt_exit_doctor)
@@ -124,17 +146,15 @@ public class DoctorInformation extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Tf_name_doctor)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Tf_phone_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(10, 10, 10)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Tf_name_doctor, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Tf_phone_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Tf_add_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,6 +187,22 @@ public class DoctorInformation extends javax.swing.JFrame {
     private void Tf_phone_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_phone_doctorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Tf_phone_doctorActionPerformed
+
+    private void Tf_speci_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_speci_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tf_speci_doctorActionPerformed
+
+    private void Tf_name_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_name_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tf_name_doctorActionPerformed
+
+    private void Tf_add_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_add_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tf_add_doctorActionPerformed
+
+    private void Tf_age_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_age_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tf_age_doctorActionPerformed
 
     /**
      * @param args the command line arguments
