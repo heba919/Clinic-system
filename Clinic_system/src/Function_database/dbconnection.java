@@ -5,19 +5,15 @@ import com.mysql.jdbc.Connection;
 import java.sql.*;
 
 
-/**
- *
- * @author aa
- */
-public class Connect {
-   public String dbname = "";
+public class dbconnection {
+   public String dbname = "clinic";
    public String dbURL = "jdbc:mysql://localhost:3306/"+dbname; // conest 
    public String username ="root"; 
-   public String password = "root";  
+   public String password = "";  
     
-    public  Connection conn() throws SQLException
+    public Connection conn() throws SQLException
     {
-        Connection dbcon = null;
+       Connection dbcon = null;
     try
     {
         dbcon = (Connection) DriverManager.getConnection(this.dbURL, this.username, this.password);

@@ -4,9 +4,17 @@
  * and open the template in the editor.
  */
 package GUI;
+<<<<<<< HEAD
 
 import javax.swing.JOptionPane;
 
+=======
+import Function_database.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+>>>>>>> afad0bef6906440038f1d0a387639ca1288f731f
 /**
  *
  * @author hp
@@ -148,8 +156,12 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_Butt_about_doctor_loginActionPerformed
 
     private void Butt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_loginActionPerformed
+<<<<<<< HEAD
       
       
+=======
+        // TODO add your handling code here:        
+>>>>>>> afad0bef6906440038f1d0a387639ca1288f731f
     }//GEN-LAST:event_Butt_loginActionPerformed
 
     private void Comb_personselectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comb_personselectActionPerformed
