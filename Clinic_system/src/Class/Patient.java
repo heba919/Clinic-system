@@ -2,17 +2,17 @@
 package Class;
 
 public class Patient {
-    private int patient_id;
-    private String name;
-    private int phone ;
-    private String email ;
-    private String address;
-    private String  symptom;
-    private int age ;
-    private int national_id;
-    private String treatment ;
-    private String date;
-    private String info_about_illness;
+    public int patient_id;
+    public  String name;
+     public  int phone ;
+     public  String email ;
+     public  String address;
+     public  String  symptom;
+     public  int age ;
+     public  int national_id;
+     public  String treatment ;
+     public  String date;
+     public  String info_about_illness;
 
     public String getTreatment() {
         return treatment;
