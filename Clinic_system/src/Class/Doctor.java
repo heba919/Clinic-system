@@ -2,13 +2,13 @@
 package Class;
 
 public class Doctor {
-    private String name;
-    private String address;
-    private int phone;
-    private String email;
-    private int age;
-    private String specially;
-    private String studying;
+    public  String name;
+    public String address;
+    public int phone;
+    public String email;
+    public int age;
+    public String specially;
+    public String studying;
 
     public String getName() {
         return name;
