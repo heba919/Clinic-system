@@ -13,7 +13,7 @@ public class Patient {
      public  String treatment ;
      public  String date;
      public  String info_about_illness;
-
+     public int doctor_id;
     public String getTreatment() {
         return treatment;
     }

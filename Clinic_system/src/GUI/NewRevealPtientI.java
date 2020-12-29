@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package GUI;
+import Class.*;
+import Collage_main.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author Mariam Hossam
- */
+
+
 public class NewRevealPtientI extends javax.swing.JFrame {
 
     /**
@@ -45,6 +48,8 @@ public class NewRevealPtientI extends javax.swing.JFrame {
         Tf_add_patient = new javax.swing.JTextField();
         Tf_age_patient = new javax.swing.JTextField();
         national_id_patient = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        Combo_select_person_patient = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("New Reveal (Patient)");
@@ -117,6 +122,17 @@ public class NewRevealPtientI extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Select Doctor:");
+
+        Combo_select_person_patient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Combo_select_person_patient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dr-Mohamed eslam", "Dr-Sameh said", "Dr-Abdallah hisham", "Dr-Ahmed ibrahim", "Dr-Aya yousuf" }));
+        Combo_select_person_patient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Combo_select_person_patientActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,10 +163,15 @@ public class NewRevealPtientI extends javax.swing.JFrame {
                                 .addGap(38, 38, 38)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Tf_add_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Tf_e_mail_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(Tf_phone_patient, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                                        .addComponent(Tf_name_patient))))
+                                        .addComponent(Tf_name_patient))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Tf_e_mail_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(97, 97, 97)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(Combo_select_person_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -186,7 +207,12 @@ public class NewRevealPtientI extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Tf_add_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(Combo_select_person_patient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Tf_add_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -225,11 +251,34 @@ public class NewRevealPtientI extends javax.swing.JFrame {
     }//GEN-LAST:event_Tf_symptons_patientActionPerformed
 
     private void Butt_exit_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_exit_patientActionPerformed
-        // TODO add your handling code here:
+       exit ex = new exit();
+        try {
+            ex.exit();
+        } catch (InterruptedException ex1) {
+           
+        }
     }//GEN-LAST:event_Butt_exit_patientActionPerformed
 
     private void Butt_submit_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_submit_patientActionPerformed
-        // TODO add your handling code here:
+        new_reveal nr =new new_reveal();
+        Patient p =new Patient();
+        p.name=Tf_name_patient.getText();
+        p.phone=Integer.parseInt(Tf_phone_patient.getText());
+        p.email=Tf_e_mail_patient.getText();
+        p.address=Tf_add_patient.getText();
+        p.age=Integer.parseInt(Tf_age_patient.getText());
+        p.national_id=Integer.parseInt(national_id_patient.getText());
+        p.symptom=Tf_symptons_patient.getText();
+        p.doctor_id= (int) Combo_select_person_patient.getSelectedIndex();
+        try {
+            nr.new_reveal_submit(p);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewRevealPtientI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_Butt_submit_patientActionPerformed
 
     private void Tf_name_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_name_patientActionPerformed
@@ -243,6 +292,10 @@ public class NewRevealPtientI extends javax.swing.JFrame {
     private void Tf_add_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tf_add_patientActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Tf_add_patientActionPerformed
+
+    private void Combo_select_person_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_select_person_patientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Combo_select_person_patientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +335,7 @@ public class NewRevealPtientI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Butt_exit_patient;
     private javax.swing.JButton Butt_submit_patient;
+    private javax.swing.JComboBox<String> Combo_select_person_patient;
     private javax.swing.JTextField Tf_add_patient;
     private javax.swing.JTextField Tf_age_patient;
     private javax.swing.JTextField Tf_e_mail_patient;
@@ -296,6 +350,7 @@ public class NewRevealPtientI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField national_id_patient;
     // End of variables declaration//GEN-END:variables
