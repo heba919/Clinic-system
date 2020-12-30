@@ -282,9 +282,15 @@ public class login_page extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         int user =0;
-        Doctor_page doctor_page= new Doctor_page(user);        //constractor
-                 doctor_page.setVisible(true);
-                 this.setVisible(false);  
+        Doctor_page doctor_page;
+        try {
+            doctor_page = new Doctor_page(user); //constractor
+            doctor_page.setVisible(true);
+                 this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(login_page.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

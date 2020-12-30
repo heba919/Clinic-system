@@ -11,5 +11,5 @@ public class Doctor {
     public String specially;
     public String studying;
     public int salary;
-    
+    public int national_id;
 }

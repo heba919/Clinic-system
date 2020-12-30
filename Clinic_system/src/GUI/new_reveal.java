@@ -248,6 +248,7 @@ public class new_reveal extends javax.swing.JFrame {
 
     private void Butt_exit_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_exit_patientActionPerformed
        exit ex = new exit();
+       this.setVisible(false);
         try {
             ex.exit();
         } catch (InterruptedException ex1) {
