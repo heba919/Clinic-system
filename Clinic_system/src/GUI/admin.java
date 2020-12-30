@@ -10,12 +10,17 @@ package GUI;
  * @author pc
  */
 public class admin extends javax.swing.JFrame {
-
+int id_patient, id_doctor;
     /**
-     * Creates new form admin
+     
+     * @param id_p
+     * @param id_d
      */
-    public admin() {
+    public admin(int id_p,int id_d) {
         initComponents();
+        id_patient=id_p;
+        id_doctor=id_d;
+        
     }
 
     /**
@@ -72,8 +77,9 @@ public class admin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new admin().setVisible(true);
+            public void run( ) {
+              admin ad=  new admin(0,0);
+              ad.setVisible(true);
             }
         });
     }

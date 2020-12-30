@@ -7,14 +7,14 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import Function_database.dbconnection;
 
-public class new_reveal {
+public class new_reveal_f {
     
   public void new_reveal_submit(Patient pat) throws SQLException{
       
      
     dbconnection con = new dbconnection() ; Connection conn = con.conn();
 PreparedStatement stmt = conn.prepareStatement("insert info patient(name,phone,E-mail,"
-        + "Address,symptom,Age,National_id,doctor_id)values(?,?,?,?,?,?,?,?)");
+        + "Address,symptom,Age,National_id,doctor_id)values(?,?,?,?,?,?,?,?)");      //edit
      Patient patient;
      patient=pat;
      stmt.setString(1,patient.name);

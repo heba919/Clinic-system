@@ -8,9 +8,9 @@ public class exit {
         
      try{
         Thread.sleep(2000);
-        //this.setVisible(false);
-     //       login Login = new login();
-       //    Login.setVisable(true);
+        
+           login Login = new login();
+         Login.setVisible(true);
            
      }
      catch(InterruptedException ex){

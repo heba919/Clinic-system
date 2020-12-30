@@ -1,11 +1,14 @@
 
 public class Consultation extends javax.swing.JFrame {
 
+    int id_patient;
     /**
      * Creates new form Consultation
+     * @param id_pat
      */
-    public Consultation() {
+    public Consultation(int id_pat) {
         initComponents();
+        id_patient=id_pat;
     }
 
     /**
@@ -262,7 +265,7 @@ public class Consultation extends javax.swing.JFrame {
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
            public void run() {
-                new Consultation().setVisible(true);
+                new Consultation(0).setVisible(true);
             }
         });
        

@@ -6,18 +6,20 @@
 package GUI;
 import Class.*;
 import Collage_main.*;
+import GUI.*;
+import Function_database.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 
-public class NewRevealPtientI extends javax.swing.JFrame {
+public class new_reveal extends javax.swing.JFrame {
 
     /**
      * Creates new form NewRevealPtientI
      */
-    public NewRevealPtientI() {
+    public new_reveal() {
         initComponents();
     }
 
@@ -260,7 +262,7 @@ public class NewRevealPtientI extends javax.swing.JFrame {
     }//GEN-LAST:event_Butt_exit_patientActionPerformed
 
     private void Butt_submit_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_submit_patientActionPerformed
-        new_reveal nr =new new_reveal();
+        new_reveal_f nr =new new_reveal_f();
         Patient p =new Patient();
         p.name=Tf_name_patient.getText();
         p.phone=Integer.parseInt(Tf_phone_patient.getText());
@@ -273,7 +275,7 @@ public class NewRevealPtientI extends javax.swing.JFrame {
         try {
             nr.new_reveal_submit(p);
         } catch (SQLException ex) {
-            Logger.getLogger(NewRevealPtientI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(new_reveal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -314,20 +316,21 @@ public class NewRevealPtientI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewRevealPtientI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(new_reveal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewRevealPtientI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(new_reveal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewRevealPtientI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(new_reveal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewRevealPtientI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(new_reveal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewRevealPtientI().setVisible(true);
+                new new_reveal().setVisible(true);
             }
         });
     }

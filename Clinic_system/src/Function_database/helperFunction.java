@@ -13,13 +13,21 @@ public class helperFunction {
     public  ResultSet rs = null;
 
     
-    public boolean login(String user_name , String pass_word)
+    public boolean login_doctor(String ID , String pass_word) throws SQLException
     {
-        return (user_name.equals("admin") && pass_word.equals("admin"));
+         String sql = "SELECT * FROM doctor WHERE doctor.National_id='"+ ID + "'";
+        rs = stm.executeQuery(sql);
+        if (pass_word.equals("12345")){
+        if(rs.next())
+            return true;
+        else
+            return false;
+    }else return false;
+        //return (user_name.equals("") && pass_word.equals("admin"));
     }
     
     
-    public  boolean login(String ID) throws SQLException
+    public  boolean login_con(String ID) throws SQLException
     {            
         Connection conn = connector.conn();
         stm = conn.createStatement();
@@ -30,8 +38,17 @@ public class helperFunction {
         else
             return false;
     }
+    
+    
+    public  boolean login_admin(String user ,String pass ) throws SQLException
+    {            
+        return (user.equals("admin") && pass.equals("admin"));
+    }
 
-    public helperFunction() throws SQLException {
+    
+    
+    
+    public helperFunction() throws SQLException {      //
         connector = new dbconnection();
     }
     

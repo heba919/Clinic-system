@@ -5,18 +5,25 @@
  */
 package GUI;
 
+import Function_database.*;
 import javax.swing.JOptionPane;
-import Function_database.helperFunction;
+import Function_database.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import Class.*;
+import Collage_main.*;
+import GUI.*;
 /**
  *
  * @author hp
  */
-public class login extends javax.swing.JFrame {
+public class login_page extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
-    public login() {
+    public login_page() {
         initComponents();
     }
 
@@ -36,7 +43,7 @@ public class login extends javax.swing.JFrame {
         Tf_u_id_login = new javax.swing.JTextField();
         Tf_pass_login = new javax.swing.JTextField();
         Comb_personselect = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        login_butt = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -77,11 +84,11 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("login");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        login_butt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        login_butt.setText("login");
+        login_butt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                login_buttActionPerformed(evt);
             }
         });
 
@@ -109,7 +116,7 @@ public class login extends javax.swing.JFrame {
                 .addGap(0, 171, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_butt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,7 +135,7 @@ public class login extends javax.swing.JFrame {
                     .addComponent(jlabel2)
                     .addComponent(Tf_pass_login, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_butt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
 
@@ -161,52 +168,95 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_Comb_personselectActionPerformed
 
     private void Comb_personselectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Comb_personselectItemStateChanged
-  
-      int index = (int) Comb_personselect.getSelectedIndex();
-
-
-        switch (index) {
-            case 0:
-                //
+    
+    int index = (int) Comb_personselect.getSelectedIndex();
+            switch (index) {
+            case 0:  // doctor
+            break;
                 
-            case 1:
+            case 1: //new
                 Tf_u_id_login.setVisible(false);
                 Tf_pass_login.setVisible(false);
-      //
-            case 2:
+                break;
+                
+      
+            case 2: //con
                 Lab_u_id_login.setText("ID");
                 Tf_pass_login.setVisible(false);
+             break;
                 //
-            case 3:
+            case 3: //admin
                 //
-                    
+                    break;
                    
         }
+       
+
+        
     }//GEN-LAST:event_Comb_personselectItemStateChanged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int index = (int) Comb_personselect.getSelectedIndex();
-        helperFunction hp;
-        switch (index) {
-            case 0:
+    private void login_buttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttActionPerformed
+  //JOptionPane.showConfirmDialog(this, "ok");
+        int user =Integer.parseInt(Tf_u_id_login.getText()); 
+     int id_con=Integer.parseInt(Tf_u_id_login.getText()); 
+    int index = (int) Comb_personselect.getSelectedIndex();
+        try {
+            helperFunction fu = new helperFunction();
+            switch (index) {
+            case 0:  // doctor
+             if(  fu.login_doctor(Tf_u_id_login.getText(), Tf_pass_login.getText())){
+                Doctor_page doctor_page= new Doctor_page(user);        //constractor
+                 doctor_page.setVisible(true);
+                 this.setVisible(false);
+            
+              
+              };
+              break;
                 
+            case 1: //new
+               // JOptionPane.showConfirmDialog(this, "ok");
                 
-            case 1:
+                new_reveal r= new new_reveal();        //constractor
+                 r.setVisible(true);
+                 this.setVisible(false);
+                break;
                 
-     
-            case 2:
+      
+            case 2: //con
+                Lab_u_id_login.setText("ID");
+                Tf_pass_login.setVisible(false);
+              if(  fu.login_con(Tf_u_id_login.getText())){
+               Consultation con= new Consultation(id_con) ;        //constractor
+                 con.setVisible(true);
+                 this.setVisible(false);
+            
+              
+              };
+                 break;
                 
-                
+                //
             case 3:
-                
+                if(  fu.login_admin(Tf_u_id_login.getText(), Tf_pass_login.getText())){
+             
+                 admin d = new admin(user,id_con) ;        //constractor
+                 d.setVisible(true);
+                 this.setVisible(false);
+            
+              };
+                break;
+               
                     
                    
+        }
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(login_page.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_login_buttActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,20 +275,24 @@ public class login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new login().setVisible(true);
+                new login_page().setVisible(true);
             }
         });
     }
@@ -248,10 +302,10 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel Lab_u_id_login;
     private javax.swing.JTextField Tf_pass_login;
     private javax.swing.JTextField Tf_u_id_login;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlabel2;
+    private javax.swing.JButton login_butt;
     // End of variables declaration//GEN-END:variables
 }
