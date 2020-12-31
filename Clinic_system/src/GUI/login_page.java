@@ -246,7 +246,7 @@ public class login_page extends javax.swing.JFrame {
                 Lab_u_id_login.setText("ID");
                 Tf_pass_login.setVisible(false);
               if(  fu.login_con(Tf_u_id_login.getText())){
-               Consultation con= new Consultation(Integer.parseInt(Tf_u_id_login.getText())) ;        //constractor
+                  Consoltation_ con= new Consoltation_(Integer.parseInt(Tf_u_id_login.getText())); //constractor    
                  con.setVisible(true);
                  this.setVisible(false);
             
@@ -280,16 +280,15 @@ public class login_page extends javax.swing.JFrame {
     }//GEN-LAST:event_login_buttActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        int user =0;
-        Doctor_page doctor_page;
         try {
-            doctor_page = new Doctor_page(user); //constractor
-            doctor_page.setVisible(true);
-                 this.setVisible(false);
+            Doctor_page d=new Doctor_page();
+            d.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(login_page.class.getName()).log(Level.SEVERE, null, ex);
         }
+     
+      
+               
                    
     }//GEN-LAST:event_jButton1ActionPerformed
 

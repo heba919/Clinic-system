@@ -4,22 +4,20 @@
  * and open the template in the editor.
  */
 package GUI;
+import java.sql.*;
 import Function_database.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import Class.*;
+import Collage_main.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mariam Hossam
  */
 public class Doctor_page extends javax.swing.JFrame {
 
-    int id ;
+    int doctor_national_id ;
     /**
      * Creates new form Doctor_pageI
      
@@ -28,13 +26,19 @@ public class Doctor_page extends javax.swing.JFrame {
      */
     
     ////constractor 
+     
+       public Doctor_page() throws SQLException {
+        initComponents();}
+    
+    
     
     public Doctor_page(int id) throws SQLException {
         initComponents();
-        this.id=id;
+        this.doctor_national_id=id;
+        //// table
     dbconnection con = new dbconnection() ; Connection conn = con.conn();
     PreparedStatement stmt = conn.prepareStatement("select patient_id,name,phone,email,address,"
-                 + " age,national_id  from patient  ");
+                 + " age,national_id  from patient ; ");
     ResultSet set = stmt.executeQuery();
             DefaultTableModel dm = new DefaultTableModel();
             dm.addColumn("Patient id");
@@ -52,6 +56,7 @@ public class Doctor_page extends javax.swing.JFrame {
             }
 
             Table_patient.setModel(dm);
+            
             
     }
 
@@ -74,14 +79,13 @@ public class Doctor_page extends javax.swing.JFrame {
         Butt_Search_patient = new javax.swing.JButton();
         Comb_select_patient_info = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
+        info_about_tf = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         symp_tf = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Doctor Page");
@@ -164,15 +168,12 @@ public class Doctor_page extends javax.swing.JFrame {
 
         Comb_select_patient_info.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient ID", "Name", "Phone", "E-mail", "Address", "National ID" }));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        info_about_tf.setColumns(20);
+        info_about_tf.setRows(5);
+        jScrollPane2.setViewportView(info_about_tf);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Treatment Plan:");
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "." }));
 
         symp_tf.setColumns(20);
         symp_tf.setRows(5);
@@ -180,6 +181,8 @@ public class Doctor_page extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Symptoms:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,29 +196,27 @@ public class Doctor_page extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(12, 12, 12))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(Tf_data_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(53, 53, 53)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))
+                        .addGap(75, 75, 75)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Butt_update_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Butt_exit_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(155, 155, 155)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Butt_delet_doctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Butt_submit_doctor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                            .addComponent(Butt_delet_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Butt_submit_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(52, 52, 52))))
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -268,28 +269,23 @@ public class Doctor_page extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Tf_data_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
+                        .addComponent(jLabel6)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addGap(42, 42, 42)
+                .addComponent(jLabel2)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel10))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Butt_update_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Butt_submit_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(92, 92, 92)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Butt_delet_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Butt_exit_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Butt_update_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Butt_submit_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(92, 92, 92)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Butt_delet_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Butt_exit_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32))
         );
 
@@ -311,17 +307,28 @@ public class Doctor_page extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void Butt_Search_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_Search_patientActionPerformed
        dbconnection con = new dbconnection() ; Connection conn;
         try {
             conn = con.conn();
-            PreparedStatement stmt = conn.prepareStatement("");
-             ResultSet set = stmt.executeQuery();
-            DefaultTableModel dm = new DefaultTableModel();
-        int index = Comb_select_patient_info.getSelectedIndex();
-        switch (index) {
-            case 0:  //id
-                
+           int index =Comb_select_patient_info.getSelectedIndex();
+           String search;
+           PreparedStatement stmt;
+           PreparedStatement stmt_s;
+            ResultSet set;
+            ResultSet set_s;
+           DefaultTableModel dm;
+           String s;
+            switch (index) {     // patient id
+            case 0:
+                // table 
+              search= Tf_patient_info.getText();
+             stmt = conn.prepareStatement("select patient_id,name,phone,E-mail,"
+        + "Address,Age,National_id) where patient_id '"+ Integer.parseInt(search) + "'");
+              set = stmt.executeQuery();
+             dm = new DefaultTableModel();
             dm.addColumn("Patient id");
             dm.addColumn("Name");
             dm.addColumn("Phone");
@@ -335,39 +342,226 @@ public class Doctor_page extends javax.swing.JFrame {
                     set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
                 dm.addRow(r);
             }
-
-            Table_patient.setModel(dm);
+              Table_patient.setModel(dm);
+              
+              ///// synptom area 
+              stmt_s = conn.prepareStatement("select symptom where patient_id "
+                      + "'"+ Integer.parseInt(search) + "'");
+             set_s = stmt_s.executeQuery();
+             s =set_s.getString(1);
+             symp_tf.setText(s);
+             
+             // Diagnose part 
+             
+             PreparedStatement stmt_d = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where diagnose.dia_id = "
+                    + "patient.diag_id ='"+ Integer.parseInt(search) +"' ;");
+            ResultSet set_d = stmt.executeQuery();
+            stmt.setString(1,Tf_data_doctor.getText());
+            stmt.setString(2,info_about_tf.getText());
                 
             break;
-                
-            case 1: //new
-               
+            
+            case 1: //name
+              search= Tf_patient_info.getText();
+             stmt = conn.prepareStatement("select patient_id,name,phone,E-mail,"
+        + "Address,Age,National_id) where name '"+ (search) + "';");
+              set = stmt.executeQuery();
+             dm = new DefaultTableModel();
+            dm.addColumn("Patient id");
+            dm.addColumn("Name");
+            dm.addColumn("Phone");
+            dm.addColumn("E-mail");
+            dm.addColumn("Address");
+            dm.addColumn("Age");
+            dm.addColumn("National id");
+            
+            while (set.next()) {
+                String r[] = {set.getString(1), set.getString(2), set.getString(3),
+                    set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
+                dm.addRow(r);
+            }
+              Table_patient.setModel(dm);
+              ///// synptom area 
+              stmt_s = conn.prepareStatement("select symptom where name "
+                      + "'"+ (search) + "';");
+             set_s = stmt_s.executeQuery();
+             s =set_s.getString(1);
+             symp_tf.setText(s);
+             
+              // Diagnose part 
+             
+             PreparedStatement stmt_n = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where "
+                     + " patient.name ='"+  search +"' ;");
+            ResultSet set_n = stmt_n.executeQuery();
+            stmt.setString(1,Tf_data_doctor.getText());
+            stmt.setString(2,info_about_tf.getText());
+              
                 break;
                 
       
-            case 2: //con
-                
+            case 2: //phone
+                search= Tf_patient_info.getText();
+             stmt = conn.prepareStatement("select patient_id,name,phone,E-mail,"
+        + "Address,Age,National_id) where phone '"+ Integer.parseInt(search) + "'");
+              set = stmt.executeQuery();
+             dm = new DefaultTableModel();
+            dm.addColumn("Patient id");
+            dm.addColumn("Name");
+            dm.addColumn("Phone");
+            dm.addColumn("E-mail");
+            dm.addColumn("Address");
+            dm.addColumn("Age");
+            dm.addColumn("National id");
+            
+            while (set.next()) {
+                String r[] = {set.getString(1), set.getString(2), set.getString(3),
+                    set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
+                dm.addRow(r);
+            }
+              Table_patient.setModel(dm);
+              ///// synptom area 
+              stmt_s = conn.prepareStatement("select symptom where phone "
+                      + "'"+ Integer.parseInt(search) + "'");
+             set_s = stmt_s.executeQuery();
+             s =set_s.getString(1);
+             symp_tf.setText(s);
+             
+              // Diagnose part 
+             
+             PreparedStatement stmt_p = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where "
+                     + " patient.phone ='"+  Integer.parseInt(search) +"' ;");
+            ResultSet set_p = stmt_p.executeQuery();
+            stmt.setString(1,Tf_data_doctor.getText());
+            stmt.setString(2,info_about_tf.getText());
+             
+              
              break;
-                //
-            case 3: //admin
-                //
+                
+            case 3: //e-mail
+              search= Tf_patient_info.getText();
+             stmt = conn.prepareStatement("select patient_id,name,phone,E-mail,"
+        + "Address,Age,National_id) where e-mail '"+ (search) + "'");
+              set = stmt.executeQuery();
+             dm = new DefaultTableModel();
+            dm.addColumn("Patient id");
+            dm.addColumn("Name");
+            dm.addColumn("Phone");
+            dm.addColumn("E-mail");
+            dm.addColumn("Address");
+            dm.addColumn("Age");
+            dm.addColumn("National id");
+            
+            while (set.next()) {
+                String r[] = {set.getString(1), set.getString(2), set.getString(3),
+                    set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
+                dm.addRow(r);
+            }
+              Table_patient.setModel(dm);
+              ///// synptom area 
+              stmt_s = conn.prepareStatement("select symptom where e-mail "
+                      + "'"+ (search) + "'");
+             set_s = stmt_s.executeQuery();
+             s =set_s.getString(1);
+             symp_tf.setText(s);   
+             
+              // Diagnose part 
+             
+             PreparedStatement stmt_e = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where "
+                     + " patient.e-mail ='"+  search +"' ;");
+            ResultSet set_e = stmt_e.executeQuery();
+            stmt.setString(1,Tf_data_doctor.getText());
+            stmt.setString(2,info_about_tf.getText());
+            
+                
+             
+                
                     break;
+                    
+                        
+            case 4: //address
+                 search= Tf_patient_info.getText();
+             stmt = conn.prepareStatement("select patient_id,name,phone,E-mail,"
+        + "Address,Age,National_id) where e-address '"+ (search) + "'");
+              set = stmt.executeQuery();
+             dm = new DefaultTableModel();
+            dm.addColumn("Patient id");
+            dm.addColumn("Name");
+            dm.addColumn("Phone");
+            dm.addColumn("E-mail");
+            dm.addColumn("Address");
+            dm.addColumn("Age");
+            dm.addColumn("National id");
+            
+            while (set.next()) {
+                String r[] = {set.getString(1), set.getString(2), set.getString(3),
+                    set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
+                dm.addRow(r);
+            }
+              Table_patient.setModel(dm);
+              ///// synptom area 
+              stmt_s = conn.prepareStatement("select symptom where address "
+                      + "'"+ (search) + "'");
+             set_s = stmt_s.executeQuery();
+             s =set_s.getString(1);
+             symp_tf.setText(s);  
+             
+             // Diagnose part 
+             
+             PreparedStatement stmt_a = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where "
+                     + " patient.address ='"+ search +"' ;");
+            ResultSet set_a = stmt_a.executeQuery();
+            stmt.setString(1,Tf_data_doctor.getText());
+            stmt.setString(2,info_about_tf.getText());
+             break;
+             
+            case 5: //nationl id 
+                search= Tf_patient_info.getText();
+             stmt = conn.prepareStatement("select patient_id,name,phone,E-mail,"
+        + "Address,Age,National_id) where national_id '"+ Integer.parseInt(search) + "'");
+              set = stmt.executeQuery();
+             dm = new DefaultTableModel();
+            dm.addColumn("Patient id");
+            dm.addColumn("Name");
+            dm.addColumn("Phone");
+            dm.addColumn("E-mail");
+            dm.addColumn("Address");
+            dm.addColumn("Age");
+            dm.addColumn("National id");
+            
+            while (set.next()) {
+                String r[] = {set.getString(1), set.getString(2), set.getString(3),
+                    set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
+                dm.addRow(r);
+            }
+              Table_patient.setModel(dm);
+              ///// synptom area 
+              stmt_s = conn.prepareStatement("select symptom where national_id "
+                      + "'"+ Integer.parseInt(search) + "'");
+             set_s = stmt_s.executeQuery();
+             s =set_s.getString(1);
+             symp_tf.setText(s);
+             
+             // Diagnose part 
+             
+             PreparedStatement stmt_na = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where "
+                     + " patient.national_id ='"+  Integer.parseInt(search) +"' ;");
+            ResultSet set_na = stmt_na.executeQuery();
+            stmt.setString(1,Tf_data_doctor.getText());
+            stmt.setString(2,info_about_tf.getText());
+              
+             break;
+                
+                    
                    
         }
-        } catch (SQLException ex) {}
-
-       
-                
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            }catch (SQLException ex) {}
+           
     }//GEN-LAST:event_Butt_Search_patientActionPerformed
 
     private void Butt_update_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_update_doctorActionPerformed
@@ -378,6 +572,7 @@ public class Doctor_page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Butt_submit_doctorActionPerformed
 
+    
     private void Butt_delet_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_delet_doctorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Butt_delet_doctorActionPerformed
@@ -391,20 +586,39 @@ public class Doctor_page extends javax.swing.JFrame {
     }//GEN-LAST:event_Tf_data_doctorActionPerformed
 
     private void Table_patientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_patientMouseClicked
-        dbconnection con = new dbconnection() ; Connection conn;
-        try {
-            conn = con.conn();
-        int row_num = Table_patient.getSelectedRow();
-        int ID = (int) Table_patient.getValueAt(row_num, 0);
-        PreparedStatement stmt = conn.prepareStatement("select symptom from patient"
-                + " where patiend_id='"+ ID + "'");
         
-        symp_tf.setText( String.valueOf(ID));
-        } catch (SQLException ex) {}
+           ///  
+           
+           try{
+               int row_num = Table_patient.getSelectedRow();
+           int ID = (int) Table_patient.getValueAt(row_num, 0);
+           
+         dbconnection con = new dbconnection() ; Connection conn = con.conn();
+            
+    PreparedStatement stmt = conn.prepareStatement("select symptom from patient"
+            + " where patiend_id='"+ ID + "'");
+         ResultSet set = stmt.executeQuery();
+          
+       String s =set.getString(1);
         
+       symp_tf.setText(s);
         
+       ////// diagnose part 
+       
+       PreparedStatement stmt_d = conn.prepareStatement("select diagnose.date , "
+             + " diagnose.info_about_illness from diagnose , patient where diagnose.dia_id = "
+                    + "patient.diag_id ='"+ ID +"' ;");
+            ResultSet set_d = stmt_d.executeQuery();
+          String d=  set_d.getString(1);
+         String in=    set_d.getString(2);
+            Tf_data_doctor.setText(d);
+            info_about_tf.setText(in);
+            
+           }catch(SQLException ex){ System.out.println("Error");
     }//GEN-LAST:event_Table_patientMouseClicked
-
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -458,9 +672,9 @@ public class Doctor_page extends javax.swing.JFrame {
     private javax.swing.JTable Table_patient;
     private javax.swing.JTextField Tf_data_doctor;
     private javax.swing.JTextField Tf_patient_info;
+    private javax.swing.JTextArea info_about_tf;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -470,7 +684,6 @@ public class Doctor_page extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea symp_tf;
     // End of variables declaration//GEN-END:variables
 }
