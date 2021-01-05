@@ -14,7 +14,7 @@ public class Patient {
      public int doctor_id;
      public int diag_id ;
      public int treat_id;
-     
+
 
 }
     

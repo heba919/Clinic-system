@@ -6,20 +6,21 @@
 package GUI;
 import Class.*;
 import Collage_main.*;
-import GUI.*;
-import Function_database.*;
-import java.sql.SQLException;
+import Function_database.dbconnection;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.DefaultComboBoxModel;
+import Collage_main.*;
 
 
 public class new_reveal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewRevealPtientI
-     */
-    public new_reveal() {
+   
+    public new_reveal() throws SQLException {
+        new_reveal_f n = new new_reveal_f();
+        DefaultComboBoxModel com = new DefaultComboBoxModel(n.show_doctor_name());     
+        Combo_select_person_patient.setModel(com);
         initComponents();
     }
 
@@ -123,7 +124,7 @@ public class new_reveal extends javax.swing.JFrame {
         jLabel9.setText("Select Doctor:");
 
         Combo_select_person_patient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Combo_select_person_patient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dr-Mohamed eslam", "Dr-Sameh said", "Dr-Abdallah hisham", "Dr-Ahmed ibrahim", "Dr-Aya yousuf" }));
+        Combo_select_person_patient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         Combo_select_person_patient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Combo_select_person_patientActionPerformed(evt);
@@ -266,9 +267,7 @@ public class new_reveal extends javax.swing.JFrame {
         p.age=Integer.parseInt(Tf_age_patient.getText());
         p.national_id=Integer.parseInt(national_id_patient.getText());
         p.symptom=Tf_symptons_patient.getText();
-        
-
-        p.doctor_id= (int) Combo_select_person_patient.getSelectedIndex();
+        p.doctor_id= (int)Combo_select_person_patient.getSelectedIndex();
         try {
             nr.new_reveal_submit(p);
         } catch (SQLException ex) {
@@ -326,8 +325,13 @@ public class new_reveal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new new_reveal().setVisible(true);
+                try {
+                    new new_reveal().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(new_reveal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

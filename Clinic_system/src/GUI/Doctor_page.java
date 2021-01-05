@@ -26,38 +26,12 @@ public class Doctor_page extends javax.swing.JFrame {
      */
     
     ////constractor 
-     
-       public Doctor_page() throws SQLException {
-        initComponents();}
-    
-    
-    
-    public Doctor_page(int id) throws SQLException {
+   public Doctor_page(int id) throws SQLException {
         initComponents();
         this.doctor_national_id=id;
         //// table
-    dbconnection con = new dbconnection() ; Connection conn = con.conn();
-    PreparedStatement stmt = conn.prepareStatement("select patient_id,name,phone,email,address,"
-                 + " age,national_id  from patient ; ");
-    ResultSet set = stmt.executeQuery();
-            DefaultTableModel dm = new DefaultTableModel();
-            dm.addColumn("Patient id");
-            dm.addColumn("Name");
-            dm.addColumn("Phone");
-            dm.addColumn("E-mail");
-            dm.addColumn("Address");
-            dm.addColumn("Age");
-            dm.addColumn("National id");
-            
-            while (set.next()) {
-                String r[] = {set.getString(1), set.getString(2), set.getString(3),
-                    set.getString(4),set.getString(5), set.getString(6), set.getString(7)};
-                dm.addRow(r);
-            }
-
-            Table_patient.setModel(dm);
-            
-            
+       doctor_page doc =new doctor_page();
+        Table_patient.setModel(doc.show_patient_info_at_doctor_in_table());
     }
 
     @SuppressWarnings("unchecked")
@@ -130,7 +104,7 @@ public class Doctor_page extends javax.swing.JFrame {
         });
 
         Butt_delet_doctor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Butt_delet_doctor.setText("Delete ");
+        Butt_delet_doctor.setText("Delete Consulation ");
         Butt_delet_doctor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(222, 9, 9)));
         Butt_delet_doctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,9 +280,7 @@ public class Doctor_page extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    
-    
+ 
     private void Butt_Search_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_Search_patientActionPerformed
        dbconnection con = new dbconnection() ; Connection conn;
         try {
@@ -476,9 +448,6 @@ public class Doctor_page extends javax.swing.JFrame {
             stmt.setString(1,Tf_data_doctor.getText());
             stmt.setString(2,info_about_tf.getText());
             
-                
-             
-                
                     break;
                     
                         
@@ -565,7 +534,7 @@ public class Doctor_page extends javax.swing.JFrame {
     }//GEN-LAST:event_Butt_Search_patientActionPerformed
 
     private void Butt_update_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_update_doctorActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_Butt_update_doctorActionPerformed
 
     private void Butt_submit_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Butt_submit_doctorActionPerformed

@@ -7,13 +7,10 @@ package GUI;
 
 import Function_database.*;
 import javax.swing.JOptionPane;
-import Function_database.*;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Class.*;
-import Collage_main.*;
-import GUI.*;
+
 /**
  *
  * @author hp
@@ -45,7 +42,6 @@ public class login_page extends javax.swing.JFrame {
         Comb_personselect = new javax.swing.JComboBox<>();
         login_butt = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -96,13 +92,6 @@ public class login_page extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Select person ");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,9 +112,7 @@ public class login_page extends javax.swing.JFrame {
                     .addComponent(Comb_personselect, 0, 202, Short.MAX_VALUE))
                 .addGap(0, 171, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(login_butt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -145,9 +132,7 @@ public class login_page extends javax.swing.JFrame {
                     .addComponent(jlabel2)
                     .addComponent(Tf_pass_login, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(login_butt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addComponent(login_butt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
 
@@ -186,22 +171,20 @@ public class login_page extends javax.swing.JFrame {
     int index = (int) Comb_personselect.getSelectedIndex();
             switch (index) {
             case 0:  // doctor
-            break;
+                break;
                 
             case 1: //new
                 Tf_u_id_login.setVisible(false);
                 Tf_pass_login.setVisible(false);
                 break;
                 
-      
             case 2: //con
                 Lab_u_id_login.setText("ID");
                 Tf_pass_login.setVisible(false);
-             break;
-                //
+                break;
+                
             case 3: //admin
-                //
-                    break;
+                break;
                    
         }
        
@@ -210,67 +193,68 @@ public class login_page extends javax.swing.JFrame {
     }//GEN-LAST:event_Comb_personselectItemStateChanged
 
     private void login_buttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttActionPerformed
-  
+    
+        // login buttom
     int index =  Comb_personselect.getSelectedIndex();
              
-     try {
+       try {
             
-         helperFunction fu = new helperFunction(); 
-            if  (index==0) {
-              // doctor
-            if(  fu.login_doctor(Tf_u_id_login.getText(), Tf_pass_login.getText())){
-                Doctor_page doctor_page= new Doctor_page(Integer.parseInt(Tf_u_id_login.getText()));        //constractor
-                 doctor_page.setVisible(true);
-                 this.setVisible(false);
-            
-              
-             }else {
-               JOptionPane.showConfirmDialog(this,
-                       "Something Went Wrong, please enter information again! ");
-            }
-            }
-              
-                
-            if (index==1)//new
-            {// JOptionPane.showConfirmDialog(this, "ok");
-                
-                new_reveal r= new new_reveal();        //constractor
-                 r.setVisible(true);
-                 this.setVisible(false);
-            }
-              
-                
-      
-             if(index==2) //con
-            {  
-                Lab_u_id_login.setText("ID");
-                Tf_pass_login.setVisible(false);
-              if(  fu.login_con(Tf_u_id_login.getText())){
-                  Consoltation_ con= new Consoltation_(Integer.parseInt(Tf_u_id_login.getText())); //constractor    
-                 con.setVisible(true);
-                 this.setVisible(false);
-            
-              
-              }
-             }
-                 
-                
-                //
-            if (index==3){
-                if(  fu.login_admin(Tf_u_id_login.getText(), Tf_pass_login.getText())){
-             
-                 admin d = new admin(Integer.parseInt(Tf_u_id_login.getText()),Integer.parseInt(Tf_u_id_login.getText())) ;        //constractor
-                 d.setVisible(true);
-                 this.setVisible(false);
-            
-              }
-            }else {
-               JOptionPane.showConfirmDialog(this,
-                       "Something Went Wrong, please enter information again! ");
-            }
-            }
-     
-            catch (NumberFormatException | SQLException e) {}
+       Login_function login= new Login_function();
+       
+        switch (index) {
+        // doctor
+            case 0:
+                {
+                    String id =Tf_u_id_login.getText();
+                    String pass =Tf_pass_login.getText();
+                    if(login.login_doctor(id,pass)){
+                        Doctor_page doctor_page= new Doctor_page(Integer.parseInt(id));
+                        doctor_page.setVisible(true);
+                        this.setVisible(false);
+                    }else {
+                        JOptionPane.showConfirmDialog(this,
+                                "Something Went Wrong, please enter information again! ");
+                    }   break;
+                }
+        //new
+            case 1:
+                new_reveal r= new new_reveal();
+                r.setVisible(true);
+                this.setVisible(false);
+                break;
+        //consu
+            case 2:
+                {
+                    String id=Tf_u_id_login.getText();
+                    if(  login.login_con(id))
+                    {
+                        Consoltation_ con= new Consoltation_(Integer.parseInt(id));
+                        con.setVisible(true);
+                        this.setVisible(false);
+                    }     break;
+                }
+        //admin
+            case 3:
+                {
+                    String name=Tf_u_id_login.getText();
+                    String pass =Tf_pass_login.getText();
+                    if(login.login_admin(name,pass))
+                    {
+                        admin d = new admin() ;
+                        d.setVisible(true);
+                        this.setVisible(false);
+                        
+                    }
+                    else {
+                        JOptionPane.showConfirmDialog(this,
+                                "Something Went Wrong, please enter information again! ");
+                    }   break;
+                }
+            default:
+                break;
+        }
+            }catch (NumberFormatException | SQLException e)
+            {JOptionPane.showConfirmDialog(this,"error " +index);}
           
         
         
@@ -278,19 +262,6 @@ public class login_page extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_login_buttActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            Doctor_page d=new Doctor_page();
-            d.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(login_page.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     
-      
-               
-                   
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,7 +295,6 @@ public class login_page extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new login_page().setVisible(true);
             }
@@ -336,7 +306,6 @@ public class login_page extends javax.swing.JFrame {
     private javax.swing.JLabel Lab_u_id_login;
     private javax.swing.JTextField Tf_pass_login;
     private javax.swing.JTextField Tf_u_id_login;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
